@@ -1,5 +1,10 @@
 # login_setter
 
 Login Setter is a simple testing tool to send data into a DB made with SQL Server. This tool is made with express.js for 
-the backend (Documentation [here](https://expressjs.com/)) and W3.CSS for the frontend (Documention [here](https://www.w3schools.com/w3css/))
+the backend (Documentation [here](https://expressjs.com/)) and W3.CSS for the frontend (Documention [here](https://www.w3schools.com/w3css/)).
+
+This tool is just to set data for a game it will be deployed soon. All tests will be deployed too, as well as some versions that'll be released.
+
+Open Source test project. Feel free to modify it by yourself. 
+
 
