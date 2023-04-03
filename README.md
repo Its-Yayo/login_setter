@@ -7,4 +7,13 @@ This tool is just to set data for a game it will be deployed soon. All tests wil
 
 Open Source test project. Feel free to modify it by yourself. 
 
+If you wanna store this repo in your localhost, make sure you type the following commands. 
+```
+$ git clone https://github.com/Its-Yayo/express_test.git
+$ cd express_test
+```
 
+To update any changes, make sure you follow the following command.
+
+```
+$ git pull
