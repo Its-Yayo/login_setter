@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 
-// Path: routes/index.js
+// Path: routes/main.js
 const app = express();
 const port = 8000;
 const ip = '127.0.0.1';
