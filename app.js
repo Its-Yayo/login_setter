@@ -14,6 +14,6 @@ app.get('/', (req, res) => {
     res.type('html');
 });
 
-app.listen(port, () => {
-    console.log('Server listening at port %d', port);
+app.listen(ip, port, () => {
+    console.log('Serving express HTTP on %s at port %d', ip, port);
 });
