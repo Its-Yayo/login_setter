@@ -14,6 +14,6 @@ app.get('/', (req, res) => {
     res.type('html');
 });
 
-app.listen(ip, port, () => {
-    console.log('Serving express HTTP on %s at port %d', ip, port);
+app.listen(port, () => {
+    console.log('Serving express HTTP on localhost at port %d', port);
 });
