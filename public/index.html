@@ -15,11 +15,21 @@
             <h6>Please login with your credentials</h6>
         </div>
         <form class="w3-container">
-            <label class="w3-text-teal"><b>First Name</b></label>
-            <input class="w3-input w3-border w3-light-grey" type="text">
-            <label class="w3-text-teal"><b>Last Name</b></label>
-            <input class="w3-input w3-border w3-light-grey" type="text">
-            <button class="w3-btn w3-blue-grey">Register</button>
+            <label id="username_id" class="w3-text-teal"><b>Username</b></label>
+            <label>
+                <input class="w3-input w3-border w3-light-grey" type="text">
+            </label>
+            <label id="password_id" class="w3-text-teal"><b>Password</b></label>
+            <label>
+                <input class="w3-input w3-border w3-light-grey" type="password">
+            </label>
+            <div>
+                <input type="checkbox" id="remember_id" name="remember" value="remember">
+                <label for="remember_id">Remember me</label>
+            </div>
+            <div>
+                <button id="register_id" class="w3-btn w3-blue-grey w3-round-large">Register</button>
+            </div>
         </form>
     </div>
 </body>
