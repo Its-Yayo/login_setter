@@ -23,8 +23,19 @@ connection.connect((err) => {
 });
 
 app.post('/submit', (req, res) => {
-    console.log(req.body);
-    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+    let sql = 'INSERT INTO test SET ?';
+    let post = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+    }
+
+    connection.query((sql, err) => {
+        if (err) throw err;
+        console.log('Data inserted successfully');
+        res.sendFile(path.join(__dirname, 'public', 'login.html'));
+    });
+
     res.status(200);
     res.type('html');
 
