@@ -3,7 +3,6 @@ const path = require('path');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 
-// Path: public/main.js
 const app = express();
 const port = 8000;
 const ip = '127.0.0.1';
