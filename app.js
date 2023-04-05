@@ -31,7 +31,6 @@ app.post('/submit', (req, res) => {
     connection.end();
 });
 
-
 app.get('/api', (req, res) => {
     res.send('API is working');
     res.status(200);
