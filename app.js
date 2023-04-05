@@ -18,8 +18,11 @@ let connection = mysql.createConnection({
 });
 
 connection.connect((err) => {
-    if (err) throw err;
-    console.log('Connected to the database');
+    try {
+        console.log('Connected to database');
+    } catch (err) {
+        console.log('Error connecting to database');
+    }
 });
 
 app.post('/submit', (req, res) => {
