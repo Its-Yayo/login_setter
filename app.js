@@ -8,6 +8,12 @@ const port = 8000;
 const ip = '127.0.0.1';
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: false }));
+
+const connection = mysql.createConnection({
+    host: 'localhost',
+
+});
 
 app.get('/api', (req, res) => {
     res.send('API is working');
