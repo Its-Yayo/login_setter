@@ -11,9 +11,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const connection = mysql.createConnection({
-    host: 'localhost',
-
+    host: '127.0.0.1',
+    user: 'root',
+    password: '',
+    database: 'test'
 });
+
+connection.connect((err) => {
+    if (err) throw err;
+    console.log('Connected to the database');
+});
+
+app.post('/submit', (req, res) => {
+   console.log(req.body);
+   res.render('index', { title: 'Data Saved', message: 'Data Saved Successfully' });
+});
+
+connection.end();
 
 app.get('/api', (req, res) => {
     res.send('API is working');
