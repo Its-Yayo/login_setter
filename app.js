@@ -10,7 +10,7 @@ const ip = '127.0.0.1';
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const connection = mysql.createConnection({
+let connection = mysql.createConnection({
     host: '127.0.0.1',
     user: 'root',
     password: '',
@@ -23,11 +23,14 @@ connection.connect((err) => {
 });
 
 app.post('/submit', (req, res) => {
-   console.log(req.body);
-   res.render('index', { title: 'Data Saved', message: 'Data Saved Successfully' });
+    console.log(req.body);
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+    res.status(200);
+    res.type('html');
+
+    connection.end();
 });
 
-connection.end();
 
 app.get('/api', (req, res) => {
     res.send('API is working');
