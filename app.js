@@ -34,10 +34,13 @@ app.post('/submit', (req, res) => {
     let sql = 'INSERT INTO users (name, email, phone) VALUES (?, ?, ?)';
 
     connection.query(sql, [req.body.name, req.body.email, req.body.phone], (err, result) => {
-        if (err) throw err;
-        console.log('Data inserted successfully');
-        res.render('success', { message : "Data inserted successfully" });
-        res.status(200)
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error');
+        } else {
+            console.log("Data inserted")
+            res.status(200).render('success', { message: 'Data inserted successfully' });
+        }
     });
 });
 
