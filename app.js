@@ -10,6 +10,12 @@ const ip = '127.0.0.1';
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use((req, res) => {
+    res.status(404);
+    res.type('html');
+    res.send('<h1>404 - Not Found</h1>');
+});
+
 let connection = mysql.createConnection({
     host: '127.0.0.1',
     user: 'root',
@@ -19,19 +25,16 @@ let connection = mysql.createConnection({
 });
 
 connection.connect((err) => {
-    try {
-        console.log('Connected to database');
-    } catch (err) {
-        console.log('Error connecting to database');
-    }
+    if (err) throw err;
+    console.log('Connected to database');
 });
 
 app.post('/submit', (req, res) => {
-    let sql = 'INSERT INTO test SET ?';
+    let sql = 'INSERT INTO users VALUES(null, post[0], post[1], post[2])';
     let post = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
+        name: document.getElementById('name_id').value,
+        email: document.getElementById('email_id').value,
+        phone: document.getElementById('phone_id').value,
     }
 
     connection.query((sql, err) => {
