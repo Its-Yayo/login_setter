@@ -9,6 +9,7 @@ const ip = '127.0.0.1';
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.set('view engine', 'ejs');
 
 app.use((req, res) => {
     res.status(404);
@@ -30,35 +31,18 @@ connection.connect((err) => {
 });
 
 app.post('/submit', (req, res) => {
-    let sql = 'INSERT INTO users VALUES(null, post[0], post[1], post[2])';
-    let post = {
-        name: document.getElementById('name_id').value,
-        email: document.getElementById('email_id').value,
-        phone: document.getElementById('phone_id').value,
-    }
+    let sql = 'INSERT INTO users (name, email, phone) VALUES (?, ?, ?)';
 
-    connection.query((sql, err) => {
+    connection.query(sql, [req.body.name, req.body.email, req.body.phone], (err, result) => {
         if (err) throw err;
         console.log('Data inserted successfully');
-        res.sendFile(path.join(__dirname, 'public', 'login.html'));
+        res.render('success', { message : "Data inserted successfully" });
+        res.status(200)
     });
-
-    res.status(200);
-    res.type('html');
-
-    connection.end();
-});
-
-app.get('/api', (req, res) => {
-    res.send('API is working');
-    res.status(200);
-    res.type('html');
 });
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-    res.status(200);
-    res.type('html');
 });
 
 app.listen(port, () => {
