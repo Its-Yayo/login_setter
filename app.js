@@ -9,7 +9,6 @@ const ip = '127.0.0.1';
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.set('view engine', 'ejs');
 
 app.use((req, res) => {
     res.status(404);
@@ -49,6 +48,10 @@ app.post('/submit', (req, res) => {
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/submit', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
 app.listen(port, () => {
