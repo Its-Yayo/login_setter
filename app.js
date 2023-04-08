@@ -33,10 +33,10 @@ app.post('/submit', (req, res) => {
     console.log("Email:", req.body.email);
     console.log("Phone:", req.body.phone);
 
-    let sql = 'INSERT INTO user (name, email, phone) VALUES (?, ?, ?)';
+    let sql = "INSERT INTO user VALUES (null, '"+ req.body.name +"', '"+ req.body.email +"', '"+  req.body.phone +")";
 
     console.log("Executing query...")
-    connection.query(sql, [req.body.name, req.body.email, req.body.phone], (err, result) => {
+    connection.query(sql, err => {
         if (err) {
             console.error(err);
             res.status(500).render('login', { message: 'Error inserting data into database' });
