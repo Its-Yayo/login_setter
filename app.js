@@ -11,12 +11,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 
-app.use((req, res) => {
-    res.status(404);
-    res.type('html');
-    res.send('<h1>404 - Not Found</h1>');
-});
-
 let connection = mysql.createConnection({
     host: '127.0.0.1',
     user: 'root',
@@ -45,16 +39,21 @@ app.post('/submit', (req, res) => {
     connection.query(sql, [req.body.name, req.body.email, req.body.phone], (err, result) => {
         if (err) {
             console.error(err);
-            res.status(500).send('Error');
+            res.status(500).render('login', { message: 'Error inserting data into database' });
         } else {
-            res.status(200).render('login', { message: 'Login successful' });
+            res.status(200).render('login', { message: 'Data inserted' });
         }
     });
 });
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-    res.status(200);
+});
+
+app.use((req, res) => {
+    res.status(404);
+    res.type('html');
+    res.send('<h1>404 - Not Found</h1>');
 });
 
 app.listen(port, () => {
