@@ -33,11 +33,6 @@ connection.connect((err) => {
     console.log('Connected to database');
 });
 
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html'));
-    res.status(200);
-});
-
 app.post('/submit', (req, res) => {
     console.log("Received form submission");
     console.log("Name:", req.body.name);
@@ -52,8 +47,7 @@ app.post('/submit', (req, res) => {
             console.error(err);
             res.status(500).send('Error');
         } else {
-            console.log("Data inserted")
-            res.redirect('/login');
+            res.status(200).render('login', { message: 'Login successful' });
         }
     });
 });
