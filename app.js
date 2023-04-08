@@ -34,8 +34,10 @@ connection.connect((err) => {
 });
 
 app.post('/submit', (req, res) => {
+    console.log("Received form submission");
     let sql = 'INSERT INTO user (name, email, phone) VALUES (?, ?, ?)';
 
+    console.log("Executing query...")
     connection.query(sql, [req.body.name, req.body.email, req.body.phone], (err, result) => {
         if (err) {
             console.error(err);
