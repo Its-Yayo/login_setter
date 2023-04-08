@@ -33,8 +33,16 @@ connection.connect((err) => {
     console.log('Connected to database');
 });
 
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
 app.post('/submit', (req, res) => {
     console.log("Received form submission");
+    console.log("Name:", req.body.name);
+    console.log("Email:", req.body.email);
+    console.log("Phone:", req.body.phone);
+
     let sql = 'INSERT INTO user (name, email, phone) VALUES (?, ?, ?)';
 
     console.log("Executing query...")
@@ -44,17 +52,13 @@ app.post('/submit', (req, res) => {
             res.status(500).send('Error');
         } else {
             console.log("Data inserted")
-            res.status(200).render('success', { message: 'Data inserted successfully' });
+            res.redirect('/login');
         }
     });
 });
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-app.get('/submit', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
 app.listen(port, () => {
