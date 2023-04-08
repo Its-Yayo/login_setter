@@ -9,6 +9,7 @@ const ip = '127.0.0.1';
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.set('view engine', 'ejs');
 
 app.use((req, res) => {
     res.status(404);
@@ -33,7 +34,7 @@ connection.connect((err) => {
 });
 
 app.post('/submit', (req, res) => {
-    let sql = 'INSERT INTO users (name, email, phone) VALUES (?, ?, ?)';
+    let sql = 'INSERT INTO user (name, email, phone) VALUES (?, ?, ?)';
 
     connection.query(sql, [req.body.name, req.body.email, req.body.phone], (err, result) => {
         if (err) {
