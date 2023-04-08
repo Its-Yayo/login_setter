@@ -35,6 +35,7 @@ connection.connect((err) => {
 
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'login.html'));
+    res.status(200);
 });
 
 app.post('/submit', (req, res) => {
@@ -59,6 +60,7 @@ app.post('/submit', (req, res) => {
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.status(200);
 });
 
 app.listen(port, () => {
