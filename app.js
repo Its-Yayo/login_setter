@@ -33,7 +33,7 @@ app.post('/submit', (req, res) => {
     console.log("Email:", req.body.email);
     console.log("Phone:", req.body.phone);
 
-    let sql = "INSERT INTO user VALUES (null, '"+ req.body.name +"', '"+ req.body.email +"', '"+  req.body.phone +")";
+    let sql = "INSERT INTO user VALUES (null, '"+ req.body.name +"', '"+ req.body.email +"', '"+  req.body.phone +"')";
 
     console.log("Executing query...")
     connection.query(sql, err => {
